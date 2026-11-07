@@ -58,3 +58,14 @@ getrandom (void *buf, size_t buflen, unsigned flags)
   phedbus_random_bytes (buf, (unsigned) buflen);
   return (ssize_t) buflen;
 }
+
+/* setrlimit: a process has OPEN_MAX descriptors (the table is reserved at that size and cannot grow), whatever limit is asked for; getrlimit (runtime library) reports no limit, and libdbus
+ * raises the soft descriptor limit to the hard one at start-up (bus_context_new), which must not fail. The request is accepted and has no effect. */
+#include <sys/resource.h>
+int
+setrlimit (int resource, const struct rlimit *rlp)
+{
+  (void) resource;
+  if (!rlp) { errno = EFAULT; return -1; }
+  return 0;
+}

@@ -42,6 +42,8 @@ cat > $O/config.h <<EOC
 #define HAVE_SYS_TIME_H 1
 #define HAVE_UNISTD_H 1
 #define HAVE_GETRANDOM 1
+#define HAVE_SOCKETPAIR 1
+#define HAVE_SETRLIMIT 1
 #define HAVE_DIRENT_H 1
 #define HAVE_RAISE 1
 #define HAVE_SETENV 1

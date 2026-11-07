@@ -11,5 +11,10 @@ if [ -f /wk/out/libphedbus.a ]; then
   mkdir -p /wk/out/db; rm -f /wk/out/db/*.o $O/libphedbustest.a
   $CC $CF $INC -I/wk/dbus-1.16.2 -I/wk/dbus-x32 -I/wk/dbus-x32/dbus -I/wk/dbus-glib-$DBUSGLIB_VER -I/wk/dbusglib-x32/inc -c /h/os/src/phedbustest/phedbustest_main.c -o /wk/out/db/phedbustest_main.o || echo "DBUS TEST COMPILE FAIL"
   ar rcs $O/libphedbustest.a /wk/out/db/*.o; echo "libphedbustest.a built"
+  # the two-process session bus test (phebustest) and the daemon objects (build_dbusd_x32.sh)
+  $CC $CF $INC -I/wk/dbus-1.16.2 -I/wk/dbus-x32 -I/wk/dbus-x32/dbus -c /h/os/src/phebustest/phebustest_main.c -o /wk/out/phebustest_main.o || echo "BUSTEST COMPILE FAIL"
+  rm -f $O/libphebustest.a; ar rcs $O/libphebustest.a /wk/out/phebustest_main.o; echo "libphebustest.a built"
+  [ -f /wk/out/libphedbusd.a ] && cp /wk/out/libphedbusd.a $O/libphedbusd.a && echo "libphedbusd.a copied"
+  [ -f /wk/out/libpheexpat.a ] && cp /wk/out/libpheexpat.a $O/libpheexpat.a
 fi
 [ -f /wk/out/libphedbusglib.a ] && cp /wk/out/libphedbusglib.a $O/libphedbusglib.a
