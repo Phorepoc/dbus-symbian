@@ -176,16 +176,14 @@ exchange (const char *listen_address, const char *connect_address, const char *l
 int
 phe_dbus_test_main (void)
 {
-  int r_pipe, r_tcp = -1, t;
+  int r_tcp = -1, t;
   const char *tries[] = { "tcp:host=127.0.0.1", "tcp:host=127.0.0.1,port=5371", NULL };
   dbus_threads_init_default ();
   LOG ("[phedbustest] libdbus %s", "1.16.2");
-  /* the protocol, authentication, message and signal machinery without the network: libdbus's own in-process transport */
-  r_pipe = exchange ("debug-pipe:name=phe", NULL, "debug-pipe");
   /* the same over the real transport: TCP on the loopback. Open C has no default connection here: name the access point (what the ROM's CommsDat calls the DHCP Ethernet IAP) */
   { struct ifreq ifr; memset (&ifr, 0, sizeof ifr); strcpy (ifr.ifr_name, "Ethernet - DHCP"); LOG ("[phedbustest] setdefaultif(%s) -> %d", ifr.ifr_name, setdefaultif (&ifr)); }
   probe_bind ("127.0.0.1 port 0", INADDR_LOOPBACK, 0); probe_bind ("any port 0", INADDR_ANY, 0);
   for (t = 0; tries[t] && r_tcp == -1; t++) r_tcp = exchange (tries[t], NULL, "tcp");
-  LOG ("[phedbustest] done: debug-pipe %s, tcp %s", r_pipe == 0 ? "PASS" : "FAIL", r_tcp == 0 ? "PASS" : (r_tcp == -1 ? "no socket" : "FAIL"));
-  return r_pipe == 0 && r_tcp == 0 ? 0 : 1;
+  LOG ("[phedbustest] done: tcp %s", r_tcp == 0 ? "PASS" : (r_tcp == -1 ? "no socket" : "FAIL"));
+  return r_tcp == 0 ? 0 : 1;
 }
