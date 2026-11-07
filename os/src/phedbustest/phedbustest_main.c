@@ -13,8 +13,10 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <net/if.h>
 #include <dbus/dbus.h>
+#include <glib.h>
+#include <glib-object.h>
+#include <dbus/dbus-glib.h>
 
 extern void phe_log (const char *msg);
 #define LOG(...) do { char m_[300]; snprintf (m_, sizeof m_, __VA_ARGS__); phe_log (m_); } while (0)
@@ -130,6 +132,20 @@ probe_bind (const char *what, unsigned addr, int port)
   close (fd);
 }
 
+/* dbus-glib over the same transport: DBusGConnection opened on the server address, a proxy for the peer interface, a blocking Ping call */
+static int
+glib_test (const char *address)
+{
+  GError *e = NULL; DBusGConnection *c; DBusGProxy *p; int r = 0;
+  c = dbus_g_connection_open (address, &e);
+  if (!c) { LOG ("[phedbustest] dbus-glib: open failed: %s", e ? e->message : "?"); return 0; }
+  p = dbus_g_proxy_new_for_peer (c, "/org/phorepoc/Test", DBUS_INTERFACE_PEER);
+  r = dbus_g_proxy_call (p, "Ping", &e, G_TYPE_INVALID, G_TYPE_INVALID) ? 1 : 0;
+  LOG ("[phedbustest] dbus-glib: Ping %s%s%s", r ? "answered" : "failed: ", r ? "" : (e ? e->message : "?"), "");
+  g_object_unref (p); dbus_g_connection_unref (c);
+  return r;
+}
+
 /* one complete exchange over one transport: listen, connect (private connection, ANONYMOUS), a method call with a reply, a signal; returns 0 on success, -1 when the transport cannot listen */
 static int
 exchange (const char *listen_address, const char *connect_address, const char *label)
@@ -168,6 +184,7 @@ exchange (const char *listen_address, const char *connect_address, const char *l
   for (i = 0; i < 100 && !got_signal; i++) usleep (20000);
   LOG ("[phedbustest] %s: signal received: %d, calls served: %d", label, got_signal, server_calls);
   LOG ("[phedbustest] %s: %s", label, ok && got_signal ? "PASS" : "FAIL");
+  if (ok && got_signal) { int g = glib_test (address); LOG ("[phedbustest] %s: dbus-glib %s", label, g ? "PASS" : "FAIL"); if (!g) ok = 0; }
   stop_loop = 1; pthread_join (th, NULL);
   dbus_connection_close (client);
   return ok && got_signal ? 0 : 3;
@@ -180,9 +197,7 @@ phe_dbus_test_main (void)
   const char *tries[] = { "tcp:host=127.0.0.1", "tcp:host=127.0.0.1,port=5371", NULL };
   dbus_threads_init_default ();
   LOG ("[phedbustest] libdbus %s", "1.16.2");
-  /* the same over the real transport: TCP on the loopback. Open C has no default connection here: name the access point (what the ROM's CommsDat calls the DHCP Ethernet IAP) */
-  { struct ifreq ifr; memset (&ifr, 0, sizeof ifr); strcpy (ifr.ifr_name, "Ethernet - DHCP"); LOG ("[phedbustest] setdefaultif(%s) -> %d", ifr.ifr_name, setdefaultif (&ifr)); }
-  probe_bind ("127.0.0.1 port 0", INADDR_LOOPBACK, 0); probe_bind ("any port 0", INADDR_ANY, 0);
+  /* the real transport: TCP on the loopback, no connection up (the platform opens the socket without one for 127.0.0.1) */
   for (t = 0; tries[t] && r_tcp == -1; t++) r_tcp = exchange (tries[t], NULL, "tcp");
   LOG ("[phedbustest] done: tcp %s", r_tcp == 0 ? "PASS" : (r_tcp == -1 ? "no socket" : "FAIL"));
   return r_tcp == 0 ? 0 : 1;

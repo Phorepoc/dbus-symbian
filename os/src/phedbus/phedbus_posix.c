@@ -48,3 +48,13 @@ pwrite (int fd, const void *buf, size_t count, off_t offset)
 
 int fork (void) { errno = ENOSYS; return -1; }
 int execvp (const char *file, char *const argv[]) { (void) file; (void) argv; errno = ENOSYS; return -1; }
+
+/* getrandom: Open C has no usable /dev/urandom here (open fails); the bytes come from the kernel's random generator (phedbus_random.cpp). libdbus uses them for the server UUID and cookies. */
+extern void phedbus_random_bytes (void *buf, unsigned len);
+ssize_t
+getrandom (void *buf, size_t buflen, unsigned flags)
+{
+  (void) flags;
+  phedbus_random_bytes (buf, (unsigned) buflen);
+  return (ssize_t) buflen;
+}

@@ -9,5 +9,5 @@ OS_LAYER_SYSTEMINCLUDE_SYMBIAN
 OS_LAYER_LIBC_SYSTEMINCLUDE
 SOURCEPATH		.
 SOURCE			phedbusglib_dll.c
-LIBRARY			euser.lib libc.lib libm.lib libpthread.lib pheglib.lib phegobject.lib phegmodule.lib phegthread.lib phedbus.lib
+LIBRARY			euser.lib libc.lib libm.lib libpthread.lib pheglib.lib phegobject.lib phegmodule.lib phegthread.lib phedbus.lib phegio.lib
 SMPSAFE

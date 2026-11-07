@@ -41,6 +41,7 @@ cat > $O/config.h <<EOC
 #define HAVE_SIGNAL_H 1
 #define HAVE_SYS_TIME_H 1
 #define HAVE_UNISTD_H 1
+#define HAVE_GETRANDOM 1
 #define HAVE_DIRENT_H 1
 #define HAVE_RAISE 1
 #define HAVE_SETENV 1
@@ -58,7 +59,7 @@ sed -e "s/@DBUS_INT64_TYPE@/long long/; s/@DBUS_INT64_MODIFIER@/ll/; s/@DBUS_INT
 LIB="dbus-address dbus-auth dbus-bus dbus-connection dbus-credentials dbus-errors dbus-keyring dbus-marshal-byteswap dbus-marshal-header dbus-marshal-recursive dbus-marshal-validate dbus-message dbus-misc dbus-nonce dbus-object-tree dbus-pending-call dbus-resources dbus-server-debug-pipe dbus-server-socket dbus-server dbus-sha dbus-signature dbus-syntax dbus-threads dbus-timeout dbus-transport-socket dbus-transport dbus-watch dbus-uuidgen dbus-server-unix"
 SHARED="dbus-dataslot dbus-file dbus-hash dbus-internals dbus-list dbus-marshal-basic dbus-memory dbus-mempool dbus-pipe dbus-string dbus-sysdeps dbus-file-unix dbus-pipe-unix dbus-sysdeps-pthread dbus-sysdeps-unix dbus-transport-unix dbus-userdb"
 UTIL="dbus-asv-util dbus-mainloop dbus-message-util dbus-pollable-set-poll dbus-pollable-set dbus-shell dbus-string-util dbus-sysdeps-util dbus-sysdeps-util-unix dbus-userdb-util"
-FF="-O2 -g0 -w -fno-pic -I/glib/overlay -include /glib/overlay/phe_glib_compat.h -include /h/os/src/phedbus/phedbus_compat.h -DHAVE_CONFIG_H -DDBUS_COMPILATION -Ddbus_1_EXPORTS -I$O -I$O/dbus -I$S -I$S/dbus"
+FF="-O2 -g0 -w -fno-pic -I/glib/overlay -include /glib/overlay/phe_glib_compat.h -include /h/os/src/phedbus/phedbus_compat.h -I/h/os/src/phedbus/inc -DHAVE_CONFIG_H -DDBUS_COMPILATION -Ddbus_1_EXPORTS -I$O -I$O/dbus -I$S -I$S/dbus"
 # (the build host defines __linux__; dbus-sysdeps-unix.c then insists on a Linux credentials mechanism, which a TCP-only system cannot have)
 rm -f $O/*.o $O/errs.*; export CC FF O S
 one() { f=$1; x=""; [ $f = dbus-sysdeps-unix ] && x="-U__linux__"; $CC $FF $x -c $S/dbus/$f.c -o $O/$f.o 2> $O/errs.$f || echo "FAIL $f"; }

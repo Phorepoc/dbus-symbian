@@ -7,4 +7,10 @@
 #include <sys/select.h>
 /* the type with the strictest fundamental alignment (C11); Open C predates it */
 typedef union { long long phe_ll; long double phe_ld; void *phe_p; } max_align_t;
+/* getrandom (phedbus_posix.c, on arc4random): libdbus includes <sys/random.h> only under HAVE_SYS_RANDOM_H */
+#define GRND_NONBLOCK 1
+#ifdef __cplusplus
+extern "C"
+#endif
+ssize_t getrandom (void *buf, size_t buflen, unsigned flags);
 #endif
