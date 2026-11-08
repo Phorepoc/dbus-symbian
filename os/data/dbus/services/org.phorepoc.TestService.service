@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.phorepoc.TestService
+Exec=phebustest.exe service

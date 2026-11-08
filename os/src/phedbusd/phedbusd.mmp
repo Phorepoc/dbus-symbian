@@ -9,6 +9,7 @@ OS_LAYER_SYSTEMINCLUDE_SYMBIAN
 OS_LAYER_LIBC_SYSTEMINCLUDE
 SOURCEPATH		.
 SOURCE			phedbusd.cpp
+SOURCE			phedbusd_proc.cpp
 SOURCEPATH		../phedbus
 SOURCE			phedbus_random.cpp
 LIBRARY			euser.lib libc.lib libm.lib libpthread.lib
