@@ -1,3 +1,7 @@
-hildon-symbian: build recipes for GLib (LGPL-2.1+), libffi (MIT) and later libhildon / libhildondesktop (LGPL-2.1) as
-app-private libraries for Phorepoc OS. Our recipe files are BSD-2-Clause. The libraries are downloaded, never copied here;
-they stay in their own replaceable DLLs. hildon-desktop and the Leste themes are GPL and are NOT used.
+dbus-symbian: The D-Bus session bus, libdbus and dbus-glib: how programs on the phone talk to each other.
+Copyright The Phorepoc Authors (see AUTHORS). Our files (os/src, recipes, overlay, registry) are BSD-2-Clause (LICENSE).
+
+Libraries built here, each in its own replaceable DLL, downloaded and never copied into this repository (recipes/pins.sh); licence texts are in LICENSES/:
+  - D-Bus 1.16.2, dbus-glib 0.114: AFL-2.1 or GPL-2.0-or-later (we use the AFL-2.1 option) (LICENSES/dbus-COPYING.txt)
+
+The package installs LICENSE, NOTICE, SOURCE-OFFER.txt and LICENSES/* to \resource\dbus-symbian\licences\.

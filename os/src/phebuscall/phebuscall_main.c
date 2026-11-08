@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <spawn.h>
+#include "phe_respath.h"
 #include <dbus/dbus.h>
 
 extern void phe_log (const char *msg);
@@ -61,7 +62,8 @@ phe_buscall_main (int argc, char **argv)
     c = dbus_bus_get_private (DBUS_BUS_SESSION, &err);
     if (c) break;
     if (tries == 0) {                           /* no session bus: start phedbusd on demand, as every client here */
-      pid_t pid; char *dargv[] = { (char *) "phedbusd.exe", (char *) "--config-file=z:/resource/dbus/session.conf", (char *) "--nofork", (char *) "--nopidfile", NULL };
+      pid_t pid; char cfgarg[200]; char *dargv[] = { (char *) "phedbusd.exe", (char *) cfgarg, (char *) "--nofork", (char *) "--nopidfile", NULL };
+      snprintf (cfgarg, sizeof cfgarg, "--config-file=%s", phe_res ("resource/dbus/session.conf"));
       LOG ("[phebuscall] no session bus: starting phedbusd -> %d", posix_spawn (&pid, "phedbusd.exe", NULL, NULL, dargv, NULL));
     }
     sleep (1);
