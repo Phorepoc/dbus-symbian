@@ -13,5 +13,5 @@ for f in "$REPO"/LICENSES/* "$REPO/LICENSE" "$REPO/NOTICE" "$REPO/SOURCE-OFFER.t
   LIC="$LIC --file $f=!:/resource/dbus-symbian/licences/$(basename "$f")"
 done
 python3 "$PHOREPOC_PDK/tools/make_sis.py" phedbus phedbusglib phedbusd phebuscall --unsigned --version "${PHOREPOC_PACKAGE_VERSION:-1.0.0}" \
-  --name "D-Bus" --vendor Phorepoc --depends 0xE7015772,1.0.0,"GLib" $LIC \
+  --name "D-Bus" --vendor Phorepoc --depends 0xE7015772,0.1.0,"GLib" $LIC \
   --out "$PHOREPOC_BUILD/sis/dbus-symbian-$ARCH.sis"
