@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright The Phorepoc Authors
+# SPDX-License-Identifier: BSD-2-Clause
 # build_dbusd_x32.sh -- IN phorepoc-x86 (volume at /wk, repo :ro at /repo, this repo at /h, glib-symbian at /glib): dbus-daemon 1.16.2 (the bus: bus/*.c of the pinned tarball, no change to the source) for x32 over Open C.
 # The bus code uses libdbus's internals, so the daemon is ONE executable: these objects + the whole of libphedbus.a (build_dbus_x32.sh) + expat (gtk-symbian's libpheexpat.a). No configure:
 # the source list is bus/CMakeLists.txt's; SELinux, AppArmor, audit, systemd, inotify and the statistics interface are off; service activation uses os/src/phedbusd/phedbus_spawn.c (a process start in place of fork/exec) (the daemon is started on demand or from a

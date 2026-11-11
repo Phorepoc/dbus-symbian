@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright The Phorepoc Authors
+# SPDX-License-Identifier: BSD-2-Clause
 # package_x32.sh -- IN phorepoc-x86 (/wk, repo:/repo:ro, this repo:/h, glib-symbian:/glib, gtk-symbian:/gtk, dbus-symbian:/dbus, output dir :/o): libdbus + dbus-glib archives and the transport test
 set -u; . /glib/recipes/pins.sh; . /h/recipes/pins.sh
 CC=/wk/lsc/bin/pp-gcc; X=/wk/x32; S=/wk/glib-2.56.4; O=/o; mkdir -p $O /wk/out/t

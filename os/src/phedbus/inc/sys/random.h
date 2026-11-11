@@ -1,3 +1,5 @@
+/* Copyright The Phorepoc Authors */
+/* SPDX-License-Identifier: BSD-2-Clause */
 /* sys/random.h -- getrandom() for libdbus over Open C (implemented in phedbus_posix.c on the platform's arc4random). BSD-2-Clause (Phorepoc). */
 #ifndef PHEDBUS_SYS_RANDOM_H
 #define PHEDBUS_SYS_RANDOM_H

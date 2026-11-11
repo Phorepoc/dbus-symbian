@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright The Phorepoc Authors
+# SPDX-License-Identifier: BSD-2-Clause
 # fetch.sh -- download + verify the pinned tarballs into dl/ (gitignored)
 set -eu
 cd "$(dirname "$0")/.."; . recipes/pins.sh; mkdir -p dl

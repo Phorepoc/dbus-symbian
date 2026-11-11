@@ -1,3 +1,5 @@
+/* Copyright The Phorepoc Authors */
+/* SPDX-License-Identifier: BSD-2-Clause */
 /* phedbustest_main.c -- libdbus over the real transport: a server on the loopback (tcp:host=127.0.0.1), a client connection to it (private, ANONYMOUS authentication, no peer credentials),
  * a method call with a reply, and a signal, through the wire protocol. The watches and timeouts libdbus asks for are served by a select loop in one thread (what a main loop does
  * for an application). BSD-2-Clause (Phorepoc). */

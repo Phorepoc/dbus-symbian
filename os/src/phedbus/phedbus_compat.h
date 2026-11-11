@@ -1,3 +1,5 @@
+/* Copyright The Phorepoc Authors */
+/* SPDX-License-Identifier: BSD-2-Clause */
 /* phedbus_compat.h -- what libdbus expects of the C library and Open C lacks. Included with -include. BSD-2-Clause (Phorepoc). */
 #ifndef PHEDBUS_COMPAT_H
 #define PHEDBUS_COMPAT_H

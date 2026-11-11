@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright The Phorepoc Authors
+# SPDX-License-Identifier: BSD-2-Clause
 # build_dbus_x32.sh -- IN phorepoc-x86 (volume at /wk, repo :ro at /repo, this repo at /h): libdbus 1.16.2 (the client library plus the utility sources the daemon shares) for x32 over Open C, from the
 # pinned tarball. The release is Meson-only: there is no configure, so the source lists are those of dbus/meson.build (unix branch, no systemd / selinux / launchd / epoll / traditional activation)
 # and config.h is written here from what Open C provides. Transport on this system: TCP on the loopback (Open C has no unix domain sockets); authentication without peer credentials.

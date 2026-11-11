@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright The Phorepoc Authors
+# SPDX-License-Identifier: BSD-2-Clause
 # build.sh -- libdbus 1.16.2 + dbus-glib 0.114 for the x32 PC image (needs glib-symbian built into the same VOL). Host side, Git Bash, Docker Desktop up.
 #
 #   REPO=<Symbian-ReverseEngineered checkout>  bash recipes/build.sh [steps]

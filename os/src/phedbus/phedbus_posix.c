@@ -1,3 +1,5 @@
+/* Copyright The Phorepoc Authors */
+/* SPDX-License-Identifier: BSD-2-Clause */
 /* phedbus_posix.c -- the few POSIX calls libdbus makes that Open C does not provide. BSD-2-Clause (Phorepoc).
  *  socketpair   a connected pair of stream sockets, made over the loopback (a listener on an ephemeral port, a connect, an accept): what D-Bus does itself on Windows.
  *  pwrite       write at an offset, through lseek / write / lseek back.

@@ -1,3 +1,5 @@
+# Copyright The Phorepoc Authors
+# SPDX-License-Identifier: BSD-2-Clause
 # pins.sh -- exact upstream versions + checksums (sha256 verified 2026-11-07 against the Gentoo Manifest SHA512 and the Debian pool orig tarballs)
 DBUS_VER=1.16.2
 DBUS_SHA256=0ba2a1a4b16afe7bceb2c07e9ce99a8c2c3508e5dec290dbb643384bd6beb7e2   # AFL-2.1 or GPL-2+

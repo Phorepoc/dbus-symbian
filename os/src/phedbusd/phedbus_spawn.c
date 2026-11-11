@@ -1,3 +1,5 @@
+/* Copyright The Phorepoc Authors */
+/* SPDX-License-Identifier: BSD-2-Clause */
 /* phedbus_spawn.c -- the spawn half of libdbus (dbus-spawn.h) for this system: what the bus uses to start a service it has been asked to activate. BSD-2-Clause (Phorepoc).
  *
  * libdbus's own dbus-spawn-unix.c forks, execs through a babysitter process and reads three pipes; a process cannot be forked here. This file keeps the interface the bus uses

@@ -1,3 +1,5 @@
+/* Copyright The Phorepoc Authors */
+/* SPDX-License-Identifier: BSD-2-Clause */
 /* phebuscall_main.c -- call a method on the session bus (what dbus-send does), through the public libdbus API. BSD-2-Clause (Phorepoc).
  *   phebuscall DEST PATH INTERFACE METHOD [TYPE:VALUE ...] [-- DEST PATH INTERFACE METHOD [TYPE:VALUE ...] ...]
  * With -a as first argument it does not wait for DEST to have an owner (the call itself activates it: service activation test).

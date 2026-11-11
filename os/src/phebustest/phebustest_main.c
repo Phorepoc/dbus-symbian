@@ -1,3 +1,5 @@
+/* Copyright The Phorepoc Authors */
+/* SPDX-License-Identifier: BSD-2-Clause */
 /* phebustest_main.c -- two processes talk over the session bus (phedbusd), through the public libdbus API only. BSD-2-Clause (Phorepoc).
  * Parent: connects to the session bus (address discovery as libdbus does it: DBUS_SESSION_BUS_ADDRESS, else the compiled-in default tcp:host=127.0.0.1,port=5371); if no bus answers it starts
  * phedbusd ON DEMAND (posix_spawn) and waits for it; owns the name org.phorepoc.BusTest, answers Echo, listens for the ChildDone signal; spawns the child.

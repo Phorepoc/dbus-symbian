@@ -1,3 +1,5 @@
+// Copyright The Phorepoc Authors
+// SPDX-License-Identifier: BSD-2-Clause
 TARGET			phedbustest.exe
 TARGETTYPE		exe
 UID				0x1000007a 0xE7015788

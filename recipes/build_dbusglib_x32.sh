@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright The Phorepoc Authors
+# SPDX-License-Identifier: BSD-2-Clause
 # build_dbusglib_x32.sh -- IN phorepoc-x86 (volume at /wk, repo :ro at /repo, this repo at /h): dbus-glib 0.114 (the GObject / GLib main loop binding of libdbus: DBusGConnection, DBusGProxy,
 # dbus_g_bus_get, dbus_g_connection_setup_with_main_context ...) for x32 over Open C, from the pinned tarball, on the libdbus of build_dbus_x32.sh. No configure: the source list is the one of
 # dbus/Makefile.am + dbus-gmain/Makefile.am (the generated dbus-gmarshal.[ch] ship in the tarball; the binding tool and the tests are not built).

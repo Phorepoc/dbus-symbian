@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright The Phorepoc Authors
+# SPDX-License-Identifier: BSD-2-Clause
 # gen_glue.sh PREFIX MODE IN.xml OUT.h -- the dbus-glib glue of a D-Bus interface, made by the REAL dbus-binding-tool of the pinned dbus-glib tarball, built NATIVELY (it runs on the build host's
 # container, it is not part of any image): dbus-binding-tool --prefix=PREFIX --mode=glib-server|glib-client IN.xml > OUT.h.
 # IN PHOREPOC-X86 (volume at /wk, this repo at /h, glib-symbian at /glib). The tool is compiled from dbus/dbus-binding-tool-glib.c + dbus-glib-tool.c + the IDL parser of dbus-glib 0.114 against
